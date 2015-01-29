@@ -2,6 +2,7 @@ function powDopDelayDOAOfAreas = F_calAreaPar(areas, sateLat, sateLong)
     global numberOfAreas_sqrt sateAlt plotProb stateAre
     numberOfAreas = numberOfAreas_sqrt .^ 2;                % 小区总数
     
+    i = 4;
     areasInLine = reshape(areas, 1, numberOfAreas, 3);      % 将扫描区域重组为一维向量以便计算
     areasWithVessels = find(areasInLine(1, :, 1)); % 存在船的小区标号
     areasLatitude = areasInLine(1, :, 2);   % 全部小区纬度向量
