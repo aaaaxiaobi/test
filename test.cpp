@@ -3,5 +3,6 @@ using namespace std;
 
 void main(){
    int i = 3;
-   cout<<i<<endl;
+   int a = 4;
+   cout<<a<<endl;
 }
