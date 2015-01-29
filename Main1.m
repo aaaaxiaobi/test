@@ -5,7 +5,6 @@ function Main1
 	dirName = 'E:/实验室/已完成修改代码/AISSig/';
 	initPar = F_initPar;
 
-%         spmd(length(mission))
             sigPath = [dirName, '/', num2str(labindex)];
 %             resultPath = [sigPath, '/demodResult_2ant/'];
             resultPath = [sigPath, '/demodResult_2ant/', num2str(mission)];
