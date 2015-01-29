@@ -1,5 +1,5 @@
 function powDopDelayDOAOfAreas = F_calAreaPar(areas, sateLat, sateLong)
-    global numberOfAreas_sqrt sateAlt plotProb
+    global numberOfAreas_sqrt sateAlt plotProb stateAre
     numberOfAreas = numberOfAreas_sqrt .^ 2;                % 小区总数
     
     areasInLine = reshape(areas, 1, numberOfAreas, 3);      % 将扫描区域重组为一维向量以便计算
@@ -20,7 +20,7 @@ function powDopDelayDOAOfAreas = F_calAreaPar(areas, sateLat, sateLong)
     
 	if plotProb == 0
        %% 功率计算
-        freeSpaceLoss_dB = -(32.44 + 20*log10(distance_SatArea/1000) + 20*log10(transFrequency/1e6));   % 自由空间功率损耗(dB)
+        freeSpaceLoss_dB = -(44.32 + 20*log10(distance_SatArea/1000) + 20*log10(transFrequency/1e6));   % 自由空间功率损耗(dB)
         totalLoss_dB = freeSpaceLoss_dB;      % 信号总损耗(dB)
         patternGain_dB = 10*log10(0.964*16/3/pi*(sin((90-elevationAngle)*pi/180)).^3 + eps*1e10);
         totalRelativeLoss_dB = totalLoss_dB-min(totalLoss_dB) + patternGain_dB;
@@ -30,7 +30,7 @@ function powDopDelayDOAOfAreas = F_calAreaPar(areas, sateLat, sateLong)
         G = 6.67*1e-11;       % 万有引力系数
         M = 5.98*1e24;        % 地球质量(kg)
         R = 6371*1e3;               % 地球半径(km)
-        satelliteSpeed = sqrt(G*M/(R+sateAlt*1e3));     % 卫星速度(m/s)
+        satelliteSpeed = sqrt(G*M/(R+sateAlt*1e3));     % 卫星速度
         % 计算卫星运动方向与小区卫星连线的夹角余弦值, 详见报告模型分析
     % 	vector_Area_x = (R .* sin((90-areasLatWithVessels)*pi/180) .* cos((areasLongWithVessels-sateLong)*pi/180))';
         vector_Area_x = (R .* sin((90-areasLatWithVessels)*pi/180) .* cos(areasLongWithVessels * pi/180))';
